@@ -77,12 +77,12 @@ JSONEditor.defaults.editors.array = JSONEditor.AbstractEditor.extend({
     this.rows = [];
     this.row_cache = [];
 
-    this.hide_delete_buttons = this.options.disable_array_delete || this.jsoneditor.options.disable_array_delete;
+    this.hide_delete_buttons = this.isReadonly() || this.options.disable_array_delete || this.jsoneditor.options.disable_array_delete;
     this.hide_delete_all_rows_buttons = this.hide_delete_buttons || this.options.disable_array_delete_all_rows || this.jsoneditor.options.disable_array_delete_all_rows;
     this.hide_delete_last_row_buttons = this.hide_delete_buttons || this.options.disable_array_delete_last_row || this.jsoneditor.options.disable_array_delete_last_row;
-    this.hide_move_buttons = this.options.disable_array_reorder || this.jsoneditor.options.disable_array_reorder;
-    this.hide_add_button = this.options.disable_array_add || this.jsoneditor.options.disable_array_add;
-    this.show_copy_button = this.options.enable_array_copy || this.jsoneditor.options.enable_array_copy;
+    this.hide_move_buttons = this.isReadonly() || this.options.disable_array_reorder || this.jsoneditor.options.disable_array_reorder;
+    this.hide_add_button = this.isReadonly() || this.options.disable_array_add || this.jsoneditor.options.disable_array_add;
+    this.show_copy_button = !this.isReadonly() || this.options.enable_array_copy || this.jsoneditor.options.enable_array_copy;
     this.array_controls_top = this.options.array_controls_top || this.jsoneditor.options.array_controls_top;
   },
   build: function() {

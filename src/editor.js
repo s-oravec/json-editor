@@ -478,6 +478,9 @@ JSONEditor.AbstractEditor = Class.extend({
   isEnabled: function() {
     return !this.disabled;
   },
+  isReadonly: function() {
+    return this.schema.readonly || this.schema.readonly;
+  },
   isRequired: function() {
     if(typeof this.schema.required === "boolean") return this.schema.required;
     else if(this.parent && this.parent.schema && Array.isArray(this.parent.schema.required)) return this.parent.schema.required.indexOf(this.key) > -1;
